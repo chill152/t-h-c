@@ -1,0 +1,4 @@
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#2563eb">
+<script>"serviceWorker"in navigator&&navigator.serviceWorker.register("sw.js")</script>
