@@ -105,6 +105,24 @@ form.tt input:not([type=checkbox]):not([type=radio]),.up input{border:1px solid 
 .tabs{display:flex;position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:6}
 .tabs button{flex:1;border:0;background:none;padding:8px 2px;font-size:11px;font-weight:600;color:var(--mute)}.tabs button.on{color:var(--pri)}.tabs span{display:block;font-size:18px}}
 @media (max-width:640px){form.tt{grid-template-columns:1fr 1fr}form.tt input[name=t],form.tt input[name=n]{grid-column:1/-1}form.add{grid-template-columns:90px 1fr auto}form.add input[name=t]{grid-column:auto}}
+:root{--bg:#f6f7fb;--ink:#1f2537;--mute:#7b8397;--line:#edeff5;--pri:#5468e7;--pri2:#5468e7;--soft:#f0f2fe;--ok:#22a06b;--warn:#d98a1c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#171c2c;--ink:#e7eaf5;--mute:#8f98b3;--line:#262d42;--soft:#1f2640;--pri:#8592ff;--pri2:#8592ff}}
+:root[data-theme="dark"]{--card:#171c2c;--ink:#e7eaf5;--mute:#8f98b3;--line:#262d42;--soft:#1f2640;--pri:#8592ff;--pri2:#8592ff}
+body{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+.logo{font-size:20px}
+nav.top a{font-weight:500}
+nav.top a.on,aside.side a.on{background:var(--soft);color:var(--pri)}
+aside.side a{font-weight:500;border-radius:12px}
+.card,.task,.gc,.day{border-radius:16px;box-shadow:0 1px 2px rgba(20,30,60,.04)}
+.day{border-color:transparent}
+.day.on{background:var(--pri);color:#fff}
+.task{border-left-width:3px}
+.task .nm b{color:var(--ink);font-weight:600}
+.btn{border-radius:12px}
+.chk{border-radius:50%}
+.tbtn,.av{box-shadow:none}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.tabs button{text-align:center}.tabs .ico{display:block;margin:0 auto 3px}
 </style>
 </head>
 <body data-v="home">
@@ -272,6 +290,8 @@ $("f").onchange=async e=>{const tp=$("dt").value.trim();$("dm").textContent="";
 let ti=Math.floor(Math.random()*TIPS.length);const showTip=()=>{$("tip").textContent=TIPS[ti++%TIPS.length]};
 $("tipb").onclick=showTip;showTip();
 $("theme").onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0d1424";r.dataset.theme=d?"light":"dark"};
+const P={home:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/>',tt:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',doc:'<path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 21V5"/>',ch:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/>'},L={home:"Trang chủ",tt:"Thời khoá biểu",doc:"Tự học",ch:"Thử thách"};
+document.querySelectorAll("aside.side a,.tabs button").forEach(e=>{const v=e.dataset.v;e.innerHTML='<svg class="ico" viewBox="0 0 24 24">'+P[v]+'</svg>'+L[v]});
 render();loadDocs();
 </script>
 </body>
